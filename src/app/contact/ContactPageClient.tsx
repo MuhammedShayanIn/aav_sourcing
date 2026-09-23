@@ -168,10 +168,14 @@ export default function ContactPageClient() {
                   Get in Touch
                 </span>
               </div>
-              <h1 className="mt-6 text-[60px] font-black leading-[0.95] tracking-[-0.025em] text-white md:text-[80px] lg:text-[96px] lg:leading-[91.2px]">
-                Let&apos;s
+              <h1 className="mt-6 text-[44px] font-black leading-[0.98] tracking-[-0.025em] text-white sm:text-[56px] sm:leading-[0.97] md:text-[64px] md:leading-[0.96] lg:text-[72px] lg:leading-[70px]">
+                Let&apos;s discuss
                 <br />
-                Talk.
+                your
+                <br />
+                sourcing
+                <br />
+                requirements
               </h1>
             </div>
             <div className="lg:justify-self-end">
@@ -179,9 +183,8 @@ export default function ContactPageClient() {
                 className="max-w-[384px] text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(255, 255, 255, 0.45)' }}
               >
-                Whether you&apos;re sourcing textile or timber products, or looking to
-                connect with international buyers — we&apos;re ready to help. Share
-                your requirement and we&apos;ll respond within 24 hours.
+                Send us the product specifications, quantity, and destination,
+                and we&apos;ll prepare a tailored offer.
               </p>
             </div>
           </div>

@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: 'About', href: '/about' },
   { label: 'Textile', href: '/textile' },
   { label: 'Timber', href: '/timber' },
+  { label: 'Where We Source', href: '/where-we-source' },
   { label: 'Contact', href: '/contact' },
 ];
 

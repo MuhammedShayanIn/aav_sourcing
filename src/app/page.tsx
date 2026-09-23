@@ -329,14 +329,23 @@ export default function HomePage() {
                       className="link-hover-effect group mt-7 inline-flex items-center gap-2 text-[13px] font-semibold text-blue-accent"
                     >
                       <span>Textile enquiry</span>
-                      <Image
-                        src="/images/icons/arrow-right.svg"
-                        alt=""
-                        width={14}
-                        height={14}
-                        className="arrow-slide"
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="arrow-slide shrink-0 transition-transform duration-300 group-hover:translate-x-1.5"
                         aria-hidden="true"
-                      />
+                      >
+                        <path
+                          d="M2.91663 7H11.0833M7 11.0833L11.0833 7L7 2.91663"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </Link>
                   </div>
                 </div>
@@ -390,14 +399,23 @@ export default function HomePage() {
                       className="link-hover-effect group mt-7 inline-flex items-center gap-2 text-[13px] font-semibold text-blue-accent"
                     >
                       <span>Timber enquiry</span>
-                      <Image
-                        src="/images/icons/arrow-right.svg"
-                        alt=""
-                        width={14}
-                        height={14}
-                        className="arrow-slide"
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="arrow-slide shrink-0 transition-transform duration-300 group-hover:translate-x-1.5"
                         aria-hidden="true"
-                      />
+                      >
+                        <path
+                          d="M2.91663 7H11.0833M7 11.0833L11.0833 7L7 2.91663"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </Link>
                   </div>
                 </div>
@@ -476,6 +494,16 @@ export default function HomePage() {
                 number="04"
                 title="Export & Shipment Coordination"
                 description="Full logistics support from Karachi port to your destination."
+              />
+              <FeatureRow
+                number="05"
+                title="Transparent Pricing"
+                description="We provide clear quotations so buyers can understand the product price and agreed sourcing fees."
+              />
+              <FeatureRow
+                number="06"
+                title="Competitive Landed Costs"
+                description="We compare suitable sourcing and shipping options and provide the information needed to assess applicable import duties. Tariff rates depend on the product classification, origin, and destination, so they should be confirmed for each shipment."
               />
               <div
                 className="h-[1px] w-full"

@@ -1,46 +1,79 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import SectionWrapper from '@/components/SectionWrapper';
 import CTASection from '@/components/CTASection';
 
-/* ─── Species Card ─── */
-function SpeciesCard({
-  image,
-  imageAlt,
-  name,
-  description,
-}: {
+/* ─── Timber Product Card ─── */
+interface TimberProductProps {
   image: string;
   imageAlt: string;
-  name: string;
+  title: string;
   description: string;
-}) {
+  tags: string[];
+}
+
+function TimberProductCard({ image, imageAlt, title, description, tags }: TimberProductProps) {
   return (
     <SectionWrapper>
-      <div className="group flex flex-col overflow-hidden rounded-2xl bg-beige shadow-sm">
+      <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-beige">
+        {/* Image */}
         <div className="relative h-48 overflow-hidden bg-warm-gray">
           <Image
             src={image}
             alt={imageAlt}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {/* Gradient overlay */}
-          <div className="bg-timber-card-gradient absolute inset-0" />
-          {/* Label */}
-          <span className="absolute bottom-4 left-4 text-[17.6px] font-black leading-[26.4px] tracking-[-0.025em] text-white">
-            {name}
-          </span>
         </div>
-        <div className="p-4">
+        {/* Content */}
+        <div className="flex flex-1 flex-col p-5">
+          <h3 className="text-[15px] font-bold leading-[22.5px] text-navy">
+            {title}
+          </h3>
           <p
-            className="text-[11.5px] leading-[15.81px]"
+            className="mt-1.5 flex-1 text-[11.5px] leading-[18.69px]"
             style={{ color: 'rgba(15, 30, 51, 0.5)' }}
           >
             {description}
           </p>
+          {/* Tags */}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border px-2.5 py-0.5 text-[10px] font-medium"
+                style={{
+                  borderColor: 'rgba(15, 30, 51, 0.15)',
+                  color: 'rgba(15, 30, 51, 0.45)',
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          {/* Enquire link */}
+          <div
+            className="mt-4 border-t pt-4"
+            style={{ borderColor: 'rgba(15, 30, 51, 0.08)' }}
+          >
+            <Link
+              href="/contact"
+              className="link-hover-effect group inline-flex items-center gap-1.5 text-[12px] font-semibold text-blue-primary"
+            >
+              <span>Enquire</span>
+              <Image
+                src="/images/icons/arrow-right.svg"
+                alt=""
+                width={11}
+                height={11}
+                className="arrow-slide"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </SectionWrapper>
@@ -93,12 +126,48 @@ function SupplyFeature({ number, text }: { number: string; text: string }) {
   );
 }
 
-const SPECIES = [
-  { image: '/images/timber-spruce.png', imageAlt: 'Stacked spruce timber planks', name: 'Spruce', description: 'Construction · Packaging · Furniture' },
-  { image: '/images/timber-pine.png', imageAlt: 'Pine lumber pile', name: 'Pine', description: 'Flooring · Joinery · Structural' },
-  { image: '/images/timber-oak.png', imageAlt: 'Oak wood grain surface', name: 'Oak', description: 'Furniture · Flooring · Millwork' },
-  { image: '/images/timber-ash.png', imageAlt: 'Ash wood texture close up', name: 'Ash', description: 'Sports Equipment · Tool Handles · Interiors' },
-  { image: '/images/timber-beech.png', imageAlt: 'Beech wood board surface', name: 'Beech', description: 'Interior Fittings · Furniture · Plywood' },
+/* ─── Product Data ─── */
+const TIMBER_PRODUCTS: TimberProductProps[] = [
+  {
+    image: '/images/timber-softwood.png',
+    imageAlt: 'Pine lumber planks stacked at a mill',
+    title: 'Softwood Sawn Timber',
+    description:
+      'Kiln dried rough sawn pine (furniture components, packaging, joinery, general manufacturing — buyer specified sizes/grades), Kiln dried rough sawn spruce (construction, furniture frames, packaging), Kiln dried S4S spruce (planed four sides, smooth finish, furniture & interior fittings)',
+    tags: ['Pine', 'Spruce', 'S4S planed'],
+  },
+  {
+    image: '/images/timber-hardwood.png',
+    imageAlt: 'Oak wood grain close-up surface',
+    title: 'Hardwood Sawn Timber',
+    description:
+      'Oak (furniture, flooring, joinery, interiors), Beech (furniture, cabinetry, machined components), Ash (furniture, flooring, joinery, distinctive grain applications). Available in edged or unedged form, subject to species and supplier availability.',
+    tags: ['Oak', 'Beech', 'Ash'],
+  },
+  {
+    image: '/images/timber-logs.png',
+    imageAlt: 'Stacked round logs in a timber yard',
+    title: 'Logs',
+    description:
+      'Softwood and hardwood logs for sawmills, veneer production, and further processing. Enquiries should specify species, diameter range, length, grade, and destination.',
+    tags: ['Softwood', 'Hardwood', 'Sawmill / veneer'],
+  },
+  {
+    image: '/images/timber-plywood.png',
+    imageAlt: 'Sheets of plywood stacked at a warehouse',
+    title: 'Plywood',
+    description:
+      'For furniture, cabinetry, interiors, packaging, and construction. Specifications include thickness, sizes, face grades, and core types.',
+    tags: ['Furniture grade', 'Construction', 'Custom spec'],
+  },
+  {
+    image: '/images/timber-veneer.png',
+    imageAlt: 'Wood veneer sheets showing natural grain',
+    title: 'Veneer',
+    description:
+      'Natural wood veneer for furniture, doors, wall panels, and decorative surfaces. Species, cut, thickness, and grading matched to project requirements.',
+    tags: ['Natural veneer', 'Furniture', 'Decorative'],
+  },
 ];
 
 const SUPPLY_FEATURES = [
@@ -132,11 +201,13 @@ export default function TimberPageClient() {
             </div>
             <div className="lg:justify-self-end">
               <p
-                className="max-w-[363px] text-[15px] leading-[24.38px]"
+                className="max-w-[525px] text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(255, 255, 255, 0.45)' }}
               >
-                Export-grade hardwood and softwood species for international
-                buyers — specialized in supply chains through China and beyond.
+                AAV Sourcing connects buyers with softwood and hardwood timber,
+                logs, plywood, and veneer. Products can be sourced to your
+                required species, dimensions, grade, moisture content, and
+                packing specifications, subject to availability.
               </p>
             </div>
           </div>
@@ -155,7 +226,7 @@ export default function TimberPageClient() {
         </div>
       </section>
 
-      {/* ═══════ AVAILABLE SPECIES ═══════ */}
+      {/* ═══════ AVAILABLE SPECIES / PRODUCTS ═══════ */}
       <section className="bg-cream">
         <div className="site-container py-24">
           <SectionWrapper>
@@ -175,9 +246,9 @@ export default function TimberPageClient() {
             </div>
           </SectionWrapper>
 
-          <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-            {SPECIES.map((s) => (
-              <SpeciesCard key={s.name} {...s} />
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {TIMBER_PRODUCTS.map((product) => (
+              <TimberProductCard key={product.title} {...product} />
             ))}
           </div>
         </div>
@@ -225,7 +296,7 @@ export default function TimberPageClient() {
       <CTASection
         heading="Request a timber
 quotation"
-        description="Specify species, volume, grade, and destination — we respond promptly."
+        description="Send us your required specifications including quantity, dimensions, grade, moisture content, and delivery destination for a tailored sourcing offer."
         primaryButtonText="Get a Quotation"
         primaryButtonHref="/contact"
       />

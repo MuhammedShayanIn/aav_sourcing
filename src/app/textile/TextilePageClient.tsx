@@ -111,68 +111,68 @@ function FeatureItem({ number, text }: { number: string; text: string }) {
 /* ─── Product Data ─── */
 const PRODUCTS: ProductCardProps[] = [
   {
-    image: '/images/textile-muslin.png',
-    imageAlt: 'Soft white baby muslin swaddle cloth',
-    title: 'Muslin & Baby Essentials',
-    description:
-      'Swaddles, diapers, bedding, duvet sets, sleeping bags, bibs, burp cloths, bandanas, wash gloves & hooded towels',
-    tags: ['Cotton muslin', 'Double gauze', 'Printed / dyed'],
-  },
-  {
-    image: '/images/textile-sheets.png',
-    imageAlt: 'White bed sheets and pillows on a premium bed',
-    title: 'Sheets & Bedding',
-    description:
-      'Jersey, terry, muslin, molton and flannel fitted sheets; woven and flannel bed sets; pillowcases and duvet covers',
-    tags: ['Cotton', 'Tencel', 'Bamboo blends'],
-  },
-  {
-    image: '/images/textile-waterproof.png',
-    imageAlt: 'White quilted mattress protector fabric closeup',
-    title: 'Waterproof Protection',
-    description:
-      'Breathable mattress and pillow protectors with TPU or PVC lamination, fitted or elasticated to buyer dimensions',
-    tags: ['Jersey + TPU', 'Terry + TPU', 'PU / PVC'],
-  },
-  {
     image: '/images/textile-towels.png',
-    imageAlt: 'Neatly stacked white folded bath towels',
-    title: 'Towels & Bath',
+    imageAlt: 'High quality towels, bath towels, and hand towels',
+    title: 'Towels',
     description:
-      'Bath towels, bath sheets, hand towels, washcloths, beach towels, bath mats and baby hooded towels',
+      'Bath towels, Hand towels, Kitchen towels, Bar mops, Zero twist towels, Baby bath towels',
     tags: ['Ring spun', 'Zero twist', 'Dobby / jacquard'],
   },
   {
-    image: '/images/textile-hospital.png',
-    imageAlt: 'Clean white hospital bed near window',
-    title: 'Hospital & Hospitality',
+    image: '/images/textile-sheets.png',
+    imageAlt: 'Premium cotton and sateen bedding sets',
+    title: 'Bedding',
     description:
-      'Hospital jersey sheets, institutional bed linen, hotel bedding, protective articles and washable laundry bags',
-    tags: ['Commercial wash', 'Custom sizes', 'Bulk packing'],
+      'Bedding sets, Jersey bedding sets, Flannel bedding sets, Cotton bedding sets, Sateen & percale sets, Muslin bedding sets, Duvet cover sets, Pillows, Throws & blankets',
+    tags: ['Cotton', 'TENCEL™', 'Sateen / percale'],
+  },
+  {
+    image: '/images/textile-waterproof.png',
+    imageAlt: 'Fitted bed sheets and waterproof laminated protection',
+    title: 'Bed Sheets',
+    description:
+      'Fitted sheets, Muslin fitted sheets, Jersey/terry/jacquard/molton fitted sheets, Waterproof laminated fitted sheets, Polycotton fitted sheets, TENCEL™ Lyocell fitted sheets, Stretch jersey bed sheets',
+    tags: ['Cotton', 'TENCEL™', 'Waterproof laminated'],
   },
   {
     image: '/images/textile-fabric.png',
-    imageAlt: 'Premium folded white fabric rolls',
-    title: 'Fabric Sourcing',
+    imageAlt: 'Knitted and woven greige and dyed fabrics',
+    title: 'Fabrics',
     description:
-      'Knitted and woven fabrics supplied greige, dyed, printed, laminated or finished to technical requirements',
-    tags: ['Jersey / terry', 'Flannel', 'Sheeting / muslin'],
+      'Greige fabrics, PU & PVC laminated fabrics, Printed fabrics, White & solid dyed fabrics, Garment washed fabrics, Knitted fabrics, Denim fabrics',
+    tags: ['Greige', 'Laminated', 'Knitted / denim'],
   },
   {
     image: '/images/textile-oem.png',
-    imageAlt: 'Colorful thread spools in textile factory',
-    title: 'OEM & Private Label',
+    imageAlt: 'OEM and private label apparel and garments',
+    title: 'Garments',
     description:
-      'Custom branding, labeling, and packaging — your design, your brand, manufactured to your specification',
-    tags: ['Custom labels', 'Private label', 'Brand packaging'],
+      'T-shirts & polo shirts, Hoodies, Denim jeans, Cotton chinos & shorts, Underwear, Gloves & socks',
+    tags: ['Cotton', 'Denim', 'OEM / private label'],
+  },
+  {
+    image: '/images/textile-muslin.png',
+    imageAlt: 'Soft cotton muslin baby swaddles and bedding',
+    title: 'Baby Textiles',
+    description:
+      'Baby bedding sets, Crib & cot fitted sheets, Moses basket sheets, Waterproof sheets, Muslin swaddles, Baby sleeping bags, Blankets & flannel receiving blankets, Burp cloths, Hooded terry towels',
+    tags: ['Muslin', 'Cotton', 'Waterproof'],
   },
   {
     image: '/images/textile-linen.png',
-    imageAlt: 'Luxury hotel and restaurant table linen, folded premium tablecloths and napkins',
-    title: 'Home & Hospitality Linen',
+    imageAlt: 'High grade cotton, lyocell, and mélange yarns',
+    title: 'Yarns',
     description:
-      'Premium hotel and restaurant linen — tablecloths, napkins, kitchen textiles and staff uniforms',
-    tags: ['Hotel grade', 'Restaurant', 'Bulk orders'],
+      'Cotton yarn (Ne 10s–80s), Lyocell yarn, Polyester viscose (PV) yarn, Polyester yarn, Polyester cotton (PC) yarn, Mélange yarn, Dyed yarn',
+    tags: ['Cotton', 'Lyocell', 'Mélange / dyed'],
+  },
+  {
+    image: '/images/textile-hospital.png',
+    imageAlt: 'Commercial hotel and hospital institutional textiles',
+    title: 'Institutional Textiles',
+    description:
+      'Hotel bedding, Hospital bedding, Waterproof bedding, Patient & medical gowns, Uniforms & institutional clothing, Institutional bedding, Laundry bags',
+    tags: ['Hotel', 'Hospital', 'Commercial wash'],
   },
 ];
 
@@ -228,8 +228,8 @@ export default function TextilePageClient() {
                 className="max-w-[377px] text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(255, 255, 255, 0.45)' }}
               >
-                Finished textile products for international buyers and importers —
-                and a direct channel to global markets for Pakistani manufacturers.
+                Explore our range of towels, bedding, fabrics, garments,
+                baby textiles, yarns, and institutional textiles.
               </p>
             </div>
           </div>
