@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { label: 'About Us', href: '/about' },
   { label: 'Textile', href: '/textile' },
   { label: 'Timber', href: '/timber' },
+  { label: 'Where We Source', href: '/where-we-source' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -71,19 +72,13 @@ export default function Footer() {
             </h3>
             <div className="mt-4 flex flex-col gap-3">
               <p
-                className="text-[14px] font-medium leading-[20px]"
-                style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-              >
-                Ahad Vavdiwala
-              </p>
-              <p
                 className="text-[14px] leading-[20px]"
                 style={{ color: 'rgba(255, 255, 255, 0.55)' }}
               >
                 AAV Sourcing — Karachi, Pakistan
               </p>
               <a
-                href="https://wa.me/"
+                href="https://wa.me/923253205555"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mt-1 inline-flex items-center gap-2 text-[14px] leading-[20px] text-blue-accent transition-all duration-300 hover:text-white"
@@ -96,8 +91,20 @@ export default function Footer() {
                   className="transition-transform duration-300 group-hover:scale-110"
                   aria-hidden="true"
                 />
-                <span className="link-hover-effect">WhatsApp</span>
+                <span className="link-hover-effect">+92 325 3205555</span>
               </a>
+              <a
+                href="mailto:aav@aavsourcing.com"
+                className="link-hover-effect text-[14px] leading-[20px] text-white/60 hover:text-white"
+              >
+                aav@aavsourcing.com
+              </a>
+              <p
+                className="text-[14px] leading-[20px]"
+                style={{ color: 'rgba(255, 255, 255, 0.45)' }}
+              >
+                WeChat: vavdiii
+              </p>
             </div>
           </div>
         </div>

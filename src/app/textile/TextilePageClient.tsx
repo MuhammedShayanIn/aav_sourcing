@@ -14,9 +14,10 @@ interface ProductCardProps {
   title: string;
   description: string;
   tags: string[];
+  href: string;
 }
 
-function ProductCard({ image, imageAlt, title, description, tags }: ProductCardProps) {
+function ProductCard({ image, imageAlt, title, description, tags, href }: ProductCardProps) {
   return (
     <SectionWrapper>
       <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-beige">
@@ -56,16 +57,16 @@ function ProductCard({ image, imageAlt, title, description, tags }: ProductCardP
               </span>
             ))}
           </div>
-          {/* Enquire link */}
+          {/* Explore link */}
           <div
             className="mt-4 border-t pt-4"
             style={{ borderColor: 'rgba(15, 30, 51, 0.08)' }}
           >
             <Link
-              href="/contact"
+              href={href}
               className="link-hover-effect group inline-flex items-center gap-1.5 text-[12px] font-semibold text-blue-primary"
             >
-              <span>Enquire</span>
+              <span>Explore</span>
               <Image
                 src="/images/icons/arrow-right.svg"
                 alt=""
@@ -111,68 +112,76 @@ function FeatureItem({ number, text }: { number: string; text: string }) {
 /* ─── Product Data ─── */
 const PRODUCTS: ProductCardProps[] = [
   {
-    image: '/images/textile-towels.png',
-    imageAlt: 'High quality towels, bath towels, and hand towels',
+    image: '/images/products/textile-towels.png',
+    imageAlt: 'Towels — rolled and folded white bath and hand towels',
     title: 'Towels',
     description:
-      'Bath towels, Hand towels, Kitchen towels, Bar mops, Zero twist towels, Baby bath towels',
+      'Bath, hand, kitchen, and baby towels in ring spun, zero twist, and jacquard constructions.',
     tags: ['Ring spun', 'Zero twist', 'Dobby / jacquard'],
+    href: '/textile/towels',
   },
   {
-    image: '/images/textile-sheets.png',
-    imageAlt: 'Premium cotton and sateen bedding sets',
+    image: '/images/products/textile-bedding.png',
+    imageAlt: 'Bedding — complete white bedding set with pillows',
     title: 'Bedding',
     description:
-      'Bedding sets, Jersey bedding sets, Flannel bedding sets, Cotton bedding sets, Sateen & percale sets, Muslin bedding sets, Duvet cover sets, Pillows, Throws & blankets',
+      'Complete bedding sets in jersey, flannel, cotton, sateen, muslin, and more.',
     tags: ['Cotton', 'TENCEL™', 'Sateen / percale'],
+    href: '/textile/bedding',
   },
   {
-    image: '/images/textile-waterproof.png',
-    imageAlt: 'Fitted bed sheets and waterproof laminated protection',
+    image: '/images/products/textile-bed-sheets.png',
+    imageAlt: 'Bed Sheets — terracotta rust fitted sheet on wooden bed',
     title: 'Bed Sheets',
     description:
-      'Fitted sheets, Muslin fitted sheets, Jersey/terry/jacquard/molton fitted sheets, Waterproof laminated fitted sheets, Polycotton fitted sheets, TENCEL™ Lyocell fitted sheets, Stretch jersey bed sheets',
+      'Fitted and flat sheets in a wide range of fabrics including waterproof and TENCEL™ options.',
     tags: ['Cotton', 'TENCEL™', 'Waterproof laminated'],
+    href: '/textile/bed-sheets',
   },
   {
-    image: '/images/textile-fabric.png',
-    imageAlt: 'Knitted and woven greige and dyed fabrics',
+    image: '/images/products/textile-fabrics.png',
+    imageAlt: 'Fabrics — fabric rolls standing upright and stacked on table',
     title: 'Fabrics',
     description:
-      'Greige fabrics, PU & PVC laminated fabrics, Printed fabrics, White & solid dyed fabrics, Garment washed fabrics, Knitted fabrics, Denim fabrics',
+      'Greige, dyed, printed, laminated, and knitted fabrics sourced to technical specifications.',
     tags: ['Greige', 'Laminated', 'Knitted / denim'],
+    href: '/textile/fabrics',
   },
   {
-    image: '/images/textile-oem.png',
-    imageAlt: 'OEM and private label apparel and garments',
+    image: '/images/products/textile-garments.png',
+    imageAlt: 'Garments — folded t-shirts and denim jeans on table',
     title: 'Garments',
     description:
-      'T-shirts & polo shirts, Hoodies, Denim jeans, Cotton chinos & shorts, Underwear, Gloves & socks',
+      'Apparel from t-shirts to denim, available for OEM and private label orders.',
     tags: ['Cotton', 'Denim', 'OEM / private label'],
+    href: '/textile/garments',
   },
   {
-    image: '/images/textile-muslin.png',
-    imageAlt: 'Soft cotton muslin baby swaddles and bedding',
+    image: '/images/products/textile-baby-textiles.png',
+    imageAlt: 'Baby Textiles — soft pastel muslin swaddles and blankets',
     title: 'Baby Textiles',
     description:
-      'Baby bedding sets, Crib & cot fitted sheets, Moses basket sheets, Waterproof sheets, Muslin swaddles, Baby sleeping bags, Blankets & flannel receiving blankets, Burp cloths, Hooded terry towels',
+      'Soft, safe baby bedding, swaddles, sleeping bags, and hooded towels.',
     tags: ['Muslin', 'Cotton', 'Waterproof'],
+    href: '/textile/baby-textiles',
   },
   {
-    image: '/images/textile-linen.png',
-    imageAlt: 'High grade cotton, lyocell, and mélange yarns',
+    image: '/images/products/textile-yarns.png',
+    imageAlt: 'Yarns — row of colorful yarn cones and spools on table',
     title: 'Yarns',
     description:
-      'Cotton yarn (Ne 10s–80s), Lyocell yarn, Polyester viscose (PV) yarn, Polyester yarn, Polyester cotton (PC) yarn, Mélange yarn, Dyed yarn',
+      'Cotton, lyocell, polyester, and blended yarns across a wide count range.',
     tags: ['Cotton', 'Lyocell', 'Mélange / dyed'],
+    href: '/textile/yarns',
   },
   {
-    image: '/images/textile-hospital.png',
-    imageAlt: 'Commercial hotel and hospital institutional textiles',
+    image: '/images/products/textile-institutional-textiles.png',
+    imageAlt: 'Institutional Textiles — clean hospital bed with white linen and blanket',
     title: 'Institutional Textiles',
     description:
-      'Hotel bedding, Hospital bedding, Waterproof bedding, Patient & medical gowns, Uniforms & institutional clothing, Institutional bedding, Laundry bags',
+      'Hotel, hospital, and institutional bedding, gowns, uniforms, and laundry bags.',
     tags: ['Hotel', 'Hospital', 'Commercial wash'],
+    href: '/textile/institutional-textiles',
   },
 ];
 
@@ -180,7 +189,7 @@ const BUYER_CONTENT = {
   description:
     "Source finished textile products directly from Pakistan's top manufacturers — with quality assurance and export handling included.",
   features: [
-    'Direct manufacturer access — no agent markups.',
+    'Direct manufacturer access.',
     'Full product range: towels, bedding, baby textiles, custom fabrics.',
     'Request samples before any bulk commitment.',
     'OEM and private label supported.',

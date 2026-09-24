@@ -197,7 +197,7 @@ export default function WhereWeSourceClient() {
             heading="Sourced from Karachi and across Pakistan"
             description="We source textile products through mills and manufacturers in Karachi and across Pakistan, serving buyers in Europe, the USA, the Middle East, and Asia."
             markets={['Europe', 'United States', 'Middle East', 'Asia']}
-            image="/images/source-textile.png"
+            image="/images/products/folded-white-textile-fabric-from-pakistani-mill.png"
             imageAlt="Folded white textile fabric from Pakistani mill"
           />
 
@@ -208,7 +208,7 @@ export default function WhereWeSourceClient() {
               heading="Supplying buyers in China, Asia & the Middle East"
               description="We source timber for buyers in China, other Asian markets, and the Middle East. Products and origins depend on the specifications and availability for each enquiry."
               markets={['China', 'Asia', 'Middle East']}
-              image="/images/source-timber.png"
+              image="/images/products/stacked-spruce-timber-planks-ready-for-export.png"
               imageAlt="Stacked spruce timber planks ready for export"
               reversed
             />

@@ -12,9 +12,10 @@ interface TimberProductProps {
   title: string;
   description: string;
   tags: string[];
+  href: string;
 }
 
-function TimberProductCard({ image, imageAlt, title, description, tags }: TimberProductProps) {
+function TimberProductCard({ image, imageAlt, title, description, tags, href }: TimberProductProps) {
   return (
     <SectionWrapper>
       <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-beige">
@@ -54,16 +55,16 @@ function TimberProductCard({ image, imageAlt, title, description, tags }: Timber
               </span>
             ))}
           </div>
-          {/* Enquire link */}
+          {/* Explore link */}
           <div
             className="mt-4 border-t pt-4"
             style={{ borderColor: 'rgba(15, 30, 51, 0.08)' }}
           >
             <Link
-              href="/contact"
+              href={href}
               className="link-hover-effect group inline-flex items-center gap-1.5 text-[12px] font-semibold text-blue-primary"
             >
-              <span>Enquire</span>
+              <span>Explore</span>
               <Image
                 src="/images/icons/arrow-right.svg"
                 alt=""
@@ -129,44 +130,49 @@ function SupplyFeature({ number, text }: { number: string; text: string }) {
 /* ─── Product Data ─── */
 const TIMBER_PRODUCTS: TimberProductProps[] = [
   {
-    image: '/images/timber-softwood.png',
-    imageAlt: 'Pine lumber planks stacked at a mill',
+    image: '/images/products/timber-softwood.png',
+    imageAlt: 'Softwood Sawn Timber — kiln dried pine lumber planks stacked',
     title: 'Softwood Sawn Timber',
     description:
-      'Kiln dried rough sawn pine (furniture components, packaging, joinery, general manufacturing — buyer specified sizes/grades), Kiln dried rough sawn spruce (construction, furniture frames, packaging), Kiln dried S4S spruce (planed four sides, smooth finish, furniture & interior fittings)',
+      'Kiln dried pine and spruce in rough sawn and S4S planed forms, to buyer specified sizes.',
     tags: ['Pine', 'Spruce', 'S4S planed'],
+    href: '/timber/softwood-sawn-timber',
   },
   {
-    image: '/images/timber-hardwood.png',
-    imageAlt: 'Oak wood grain close-up surface',
+    image: '/images/products/timber-hardwood.png',
+    imageAlt: 'Hardwood Sawn Timber — stepped oak and beech wood planks showing grain',
     title: 'Hardwood Sawn Timber',
     description:
-      'Oak (furniture, flooring, joinery, interiors), Beech (furniture, cabinetry, machined components), Ash (furniture, flooring, joinery, distinctive grain applications). Available in edged or unedged form, subject to species and supplier availability.',
+      'Oak, beech, and ash in edged or unedged form for furniture, flooring, and joinery.',
     tags: ['Oak', 'Beech', 'Ash'],
+    href: '/timber/hardwood-sawn-timber',
   },
   {
-    image: '/images/timber-logs.png',
-    imageAlt: 'Stacked round logs in a timber yard',
+    image: '/images/products/timber-logs.png',
+    imageAlt: 'Logs — stacked round timber tree logs with bark and cut rings',
     title: 'Logs',
     description:
-      'Softwood and hardwood logs for sawmills, veneer production, and further processing. Enquiries should specify species, diameter range, length, grade, and destination.',
+      'Softwood and hardwood logs for sawmills, veneer production, and further processing.',
     tags: ['Softwood', 'Hardwood', 'Sawmill / veneer'],
+    href: '/timber/logs',
   },
   {
-    image: '/images/timber-plywood.png',
-    imageAlt: 'Sheets of plywood stacked at a warehouse',
+    image: '/images/products/timber-plywood.png',
+    imageAlt: 'Plywood — sheets of plywood stacked on a wooden pallet',
     title: 'Plywood',
     description:
-      'For furniture, cabinetry, interiors, packaging, and construction. Specifications include thickness, sizes, face grades, and core types.',
+      'Panels for furniture, cabinetry, interiors, packaging, and construction.',
     tags: ['Furniture grade', 'Construction', 'Custom spec'],
+    href: '/timber/plywood',
   },
   {
-    image: '/images/timber-veneer.png',
-    imageAlt: 'Wood veneer sheets showing natural grain',
+    image: '/images/products/timber-veneer.png',
+    imageAlt: 'Veneer — thin curved natural wood veneer sheets showing grain',
     title: 'Veneer',
     description:
-      'Natural wood veneer for furniture, doors, wall panels, and decorative surfaces. Species, cut, thickness, and grading matched to project requirements.',
+      'Natural wood veneer for furniture, doors, wall panels, and decorative surfaces.',
     tags: ['Natural veneer', 'Furniture', 'Decorative'],
+    href: '/timber/veneer',
   },
 ];
 
@@ -235,13 +241,13 @@ export default function TimberPageClient() {
               style={{ borderBottom: '1px solid rgba(15, 30, 51, 0.1)' }}
             >
               <h2 className="text-[32px] font-black leading-[48px] tracking-[-0.025em] text-navy">
-                Available Species
+                Product Categories
               </h2>
               <span
                 className="hidden text-[12px] leading-[18px] md:block"
                 style={{ color: 'rgba(15, 30, 51, 0.35)' }}
               >
-                All kiln-dried, export-ready
+                No prices. Enquire for quotation.
               </span>
             </div>
           </SectionWrapper>

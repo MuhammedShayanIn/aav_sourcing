@@ -219,7 +219,7 @@ export default function ContactPageClient() {
                   />
                   {/* WhatsApp */}
                   <a
-                    href="https://wa.me/"
+                    href="https://wa.me/923253205555"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex gap-4 rounded-xl p-2 -mx-2 transition-all duration-300 hover:bg-white/60 hover:scale-[1.02]"
@@ -245,8 +245,69 @@ export default function ContactPageClient() {
                       >
                         WhatsApp
                       </span>
-                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-whatsapp link-hover-effect">
-                        Message us directly
+                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-[#128C7E] link-hover-effect">
+                        +92 325 3205555
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* WeChat */}
+                  <div className="group flex gap-4 rounded-xl p-2 -mx-2">
+                    <div className="mt-0.5 flex shrink-0 items-start">
+                      <div
+                        className="flex h-9 w-9 items-center justify-center rounded-xl"
+                        style={{ backgroundColor: 'rgba(7, 193, 96, 0.12)' }}
+                      >
+                        <Image
+                          src="/images/icons/contact-wechat.svg"
+                          alt=""
+                          width={15}
+                          height={15}
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <span
+                        className="text-[10px] font-semibold uppercase leading-[15px] tracking-[0.15em]"
+                        style={{ color: 'rgba(15, 30, 51, 0.35)' }}
+                      >
+                        WeChat
+                      </span>
+                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-navy">
+                        vavdiii
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <a
+                    href="mailto:aav@aavsourcing.com"
+                    className="group flex gap-4 rounded-xl p-2 -mx-2 transition-all duration-300 hover:bg-white/60 hover:scale-[1.02]"
+                  >
+                    <div className="mt-0.5 flex shrink-0 items-start">
+                      <div
+                        className="flex h-9 w-9 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
+                        style={{ backgroundColor: 'rgba(30, 95, 168, 0.12)' }}
+                      >
+                        <Image
+                          src="/images/icons/contact-email.svg"
+                          alt=""
+                          width={15}
+                          height={15}
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <span
+                        className="text-[10px] font-semibold uppercase leading-[15px] tracking-[0.15em]"
+                        style={{ color: 'rgba(15, 30, 51, 0.35)' }}
+                      >
+                        Email
+                      </span>
+                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-blue-primary link-hover-effect">
+                        aav@aavsourcing.com
                       </p>
                     </div>
                   </a>

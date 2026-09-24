@@ -35,21 +35,21 @@ export default function CTASection({
 
       <div className="site-container relative py-24">
         <SectionWrapper>
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12">
-            {/* Heading */}
-            <div className="max-w-[500px]">
-              <h2 className="text-[26px] font-black leading-[1.12] tracking-[-0.025em] text-white sm:text-[32px] md:text-[38px] lg:text-[42px]">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+            {/* Heading (Figma: style_6224dad5 - 72px, 68.4px line-height, font-black) */}
+            <div className="w-full max-w-[720px]">
+              <h2 className="text-[34px] sm:text-[46px] md:text-[58px] lg:text-[72px] lg:leading-[68.4px] font-black tracking-[-0.025em] text-white">
                 {heading.split('\n').map((line, idx) => (
                   <span
                     key={idx}
-                    className="block whitespace-normal sm:whitespace-nowrap"
+                    className="block lg:whitespace-nowrap"
                   >
                     {line}
                   </span>
                 ))}
                 {headingHighlight && (
                   <span
-                    className="block whitespace-normal sm:whitespace-nowrap"
+                    className="block lg:whitespace-nowrap"
                     style={{ color: 'rgba(255, 255, 255, 0.8)' }}
                   >
                     {headingHighlight}
@@ -59,9 +59,9 @@ export default function CTASection({
             </div>
 
             {/* Right column */}
-            <div className="flex flex-col items-start gap-5 lg:items-end">
+            <div className="flex flex-col items-start gap-6 lg:items-end">
               <p
-                className="max-w-[384px] text-[15px] leading-[24.38px] lg:text-right"
+                className="max-w-[480px] text-[15px] leading-[24.38px] lg:text-right"
                 style={{ color: 'rgba(255, 255, 255, 0.7)' }}
               >
                 {description}
@@ -69,7 +69,7 @@ export default function CTASection({
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href={primaryButtonHref}
-                  className="btn-white group px-8 py-4 text-[14px]"
+                  className="btn-white group px-10 py-5 text-[15px] font-semibold"
                 >
                   <span>{primaryButtonText}</span>
                   <Image
@@ -84,7 +84,7 @@ export default function CTASection({
                 {secondaryButtonText && secondaryButtonHref && (
                   <Link
                     href={secondaryButtonHref}
-                    className="btn-outline-white px-7 py-4 text-[14px]"
+                    className="btn-outline-white px-8 py-5 text-[15px] font-semibold"
                   >
                     {secondaryButtonText}
                   </Link>

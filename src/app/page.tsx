@@ -174,7 +174,7 @@ export default function HomePage() {
       <section className="relative h-[781px] overflow-hidden bg-navy">
         {/* Background Image */}
         <Image
-          src="/images/hero-bg.png"
+          src="/images/products/rolled-white-premium-towels-on-timber-deck.png"
           alt="Premium towels on timber deck"
           fill
           className="object-cover"
@@ -286,7 +286,7 @@ export default function HomePage() {
             <SectionWrapper delay={0.1}>
               <div className="group relative h-[520px] overflow-hidden rounded-2xl shadow-md">
                 <Image
-                  src="/images/textile-card-bg.png"
+                  src="/images/products/stacked-folded-towels-on-rack.png"
                   alt="Stacked folded towels on rack"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -356,7 +356,7 @@ export default function HomePage() {
             <SectionWrapper delay={0.2}>
               <div className="group relative h-[520px] overflow-hidden rounded-2xl shadow-md">
                 <Image
-                  src="/images/timber-card-bg.png"
+                  src="/images/products/stacked-timber-planks-warehouse.png"
                   alt="Stacked timber planks warehouse"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
