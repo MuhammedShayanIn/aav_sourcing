@@ -44,7 +44,7 @@ function ProductCard({
           />
         </Link>
         {/* Content */}
-        <div className="flex flex-1 flex-col p-5">
+        <div className="flex flex-1 flex-col p-4 sm:p-4.5">
           <h3 className="text-[15px] font-bold leading-[22.5px] text-navy">
             <Link
               href={href}
@@ -61,15 +61,14 @@ function ProductCard({
           </p>
 
           {/* 2-Column Bullet List */}
-          <div className="mt-4 grid grid-cols-2 gap-x-2.5 gap-y-1.5 text-[10.5px] leading-[15px]">
+          <div className="mt-4 grid grid-cols-2 gap-x-1.5 sm:gap-x-2 gap-y-1.5 text-[10px] sm:text-[10.5px] leading-[15px]">
             <div className="flex flex-col gap-1.5 min-w-0">
               {itemsCol1.map((item) => (
                 <div key={item} className="flex items-center gap-1.5 min-w-0">
                   <span className="text-[9px] text-neutral-400 select-none shrink-0 leading-none">•</span>
                   <span
-                    className="truncate whitespace-nowrap text-[10.5px] leading-tight"
+                    className="whitespace-nowrap text-[10px] sm:text-[10.5px] leading-tight tracking-[-0.01em]"
                     style={{ color: 'rgba(15, 30, 51, 0.7)' }}
-                    title={item}
                   >
                     {item}
                   </span>
@@ -81,9 +80,8 @@ function ProductCard({
                 <div key={item} className="flex items-center gap-1.5 min-w-0">
                   <span className="text-[9px] text-neutral-400 select-none shrink-0 leading-none">•</span>
                   <span
-                    className="truncate whitespace-nowrap text-[10.5px] leading-tight"
+                    className="whitespace-nowrap text-[10px] sm:text-[10.5px] leading-tight tracking-[-0.01em]"
                     style={{ color: 'rgba(15, 30, 51, 0.7)' }}
-                    title={item}
                   >
                     {item}
                   </span>
@@ -347,7 +345,7 @@ export default function TextilePageClient() {
 
       {/* ═══════ PRODUCT CATEGORIES ═══════ */}
       <section className="bg-cream">
-        <div className="site-container py-24">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-24">
           <SectionWrapper>
             <div
               className="flex items-end justify-between pb-4"
@@ -365,7 +363,7 @@ export default function TextilePageClient() {
             </div>
           </SectionWrapper>
 
-          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PRODUCTS.map((product) => (
               <ProductCard key={product.title} {...product} />
             ))}
