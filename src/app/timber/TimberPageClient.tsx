@@ -7,20 +7,24 @@ import CTASection from '@/components/CTASection';
 
 /* ─── Timber Product Card ─── */
 interface TimberProductProps {
+  number: string;
   image: string;
   imageAlt: string;
   title: string;
   description: string;
-  tags: string[];
+  bullets: string[];
   href: string;
 }
 
-function TimberProductCard({ image, imageAlt, title, description, tags, href }: TimberProductProps) {
+function TimberProductCard({ number, image, imageAlt, title, description, bullets, href }: TimberProductProps) {
   return (
     <SectionWrapper>
-      <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-beige">
-        {/* Image */}
-        <div className="relative h-48 overflow-hidden bg-warm-gray">
+      <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-beige transition-all duration-300 hover:shadow-md">
+        {/* Image with Number Badge on top-left */}
+        <Link
+          href={href}
+          className="relative block h-48 overflow-hidden bg-warm-gray cursor-pointer"
+        >
           <Image
             src={image}
             alt={imageAlt}
@@ -28,36 +32,40 @@ function TimberProductCard({ image, imageAlt, title, description, tags, href }: 
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-        </div>
+          <div className="absolute left-3 top-3 flex items-center justify-center rounded bg-black/40 px-2 py-0.5 backdrop-blur-xs">
+            <span className="text-[10.5px] font-medium text-white/90 tracking-wider">
+              {number}
+            </span>
+          </div>
+        </Link>
         {/* Content */}
         <div className="flex flex-1 flex-col p-5">
           <h3 className="text-[15px] font-bold leading-[22.5px] text-navy">
-            {title}
+            <Link
+              href={href}
+              className="transition-colors hover:text-blue-primary"
+            >
+              {title}
+            </Link>
           </h3>
           <p
-            className="mt-1.5 flex-1 text-[11.5px] leading-[18.69px]"
-            style={{ color: 'rgba(15, 30, 51, 0.5)' }}
+            className="mt-1 text-[11px] leading-[17px]"
+            style={{ color: 'rgba(15, 30, 51, 0.55)' }}
           >
             {description}
           </p>
-          {/* Tags */}
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border px-2.5 py-0.5 text-[10px] font-medium"
-                style={{
-                  borderColor: 'rgba(15, 30, 51, 0.15)',
-                  color: 'rgba(15, 30, 51, 0.45)',
-                }}
-              >
-                {tag}
-              </span>
+          {/* Bullets matching Figma Screenshot 3 */}
+          <div className="mt-4 flex flex-1 flex-col gap-1.5 text-[11px] leading-[16px]">
+            {bullets.map((bullet) => (
+              <div key={bullet} className="flex items-start gap-1.5">
+                <span className="text-[9px] leading-tight text-neutral-400 select-none">•</span>
+                <span style={{ color: 'rgba(15, 30, 51, 0.65)' }}>{bullet}</span>
+              </div>
             ))}
           </div>
           {/* Explore link */}
           <div
-            className="mt-4 border-t pt-4"
+            className="mt-auto pt-4 border-t"
             style={{ borderColor: 'rgba(15, 30, 51, 0.08)' }}
           >
             <Link
@@ -130,54 +138,44 @@ function SupplyFeature({ number, text }: { number: string; text: string }) {
 /* ─── Product Data ─── */
 const TIMBER_PRODUCTS: TimberProductProps[] = [
   {
-    image: '/images/products/timber-softwood.png',
-    imageAlt: 'Softwood Sawn Timber — kiln dried pine lumber planks stacked',
+    number: '',
+    image: '/images/products/timber-card-softwood.png',
+    imageAlt: 'Pine lumber planks stacked at a mill',
     title: 'Softwood Sawn Timber',
-    description:
-      'Kiln dried pine and spruce in rough sawn and S4S planed forms, to buyer specified sizes.',
-    tags: ['Pine', 'Spruce', 'S4S planed'],
+    description: 'Kiln-dried softwood in rough sawn and planed forms.',
+    bullets: [
+      'Kiln dried rough sawn pine',
+      'Kiln dried rough sawn spruce',
+      'Kiln dried S4S spruce',
+    ],
     href: '/timber/softwood-sawn-timber',
   },
   {
-    image: '/images/products/timber-hardwood.png',
-    imageAlt: 'Hardwood Sawn Timber — stepped oak and beech wood planks showing grain',
+    number: '',
+    image: '/images/products/timber-card-hardwood.png',
+    imageAlt: 'Oak wood grain close-up surface',
     title: 'Hardwood Sawn Timber',
-    description:
-      'Oak, beech, and ash in edged or unedged form for furniture, flooring, and joinery.',
-    tags: ['Oak', 'Beech', 'Ash'],
+    description: 'Quality hardwood for furniture, flooring, and joinery.',
+    bullets: ['Oak', 'Beech', 'Ash'],
     href: '/timber/hardwood-sawn-timber',
   },
   {
-    image: '/images/products/timber-logs.png',
-    imageAlt: 'Logs — stacked round timber tree logs with bark and cut rings',
-    title: 'Logs',
-    description:
-      'Softwood and hardwood logs for sawmills, veneer production, and further processing.',
-    tags: ['Softwood', 'Hardwood', 'Sawmill / veneer'],
-    href: '/timber/logs',
-  },
-  {
-    image: '/images/products/timber-plywood.png',
-    imageAlt: 'Plywood — sheets of plywood stacked on a wooden pallet',
+    number: '',
+    image: '/images/products/timber-card-plywood.png',
+    imageAlt: 'Sheets of plywood stacked at a warehouse',
     title: 'Plywood',
-    description:
-      'Panels for furniture, cabinetry, interiors, packaging, and construction.',
-    tags: ['Furniture grade', 'Construction', 'Custom spec'],
+    description: 'Engineered panels for furniture, interiors, and construction.',
+    bullets: [
+      'Furniture-grade plywood',
+      'Cabinetry plywood',
+      'Construction plywood',
+    ],
     href: '/timber/plywood',
-  },
-  {
-    image: '/images/products/timber-veneer.png',
-    imageAlt: 'Veneer — thin curved natural wood veneer sheets showing grain',
-    title: 'Veneer',
-    description:
-      'Natural wood veneer for furniture, doors, wall panels, and decorative surfaces.',
-    tags: ['Natural veneer', 'Furniture', 'Decorative'],
-    href: '/timber/veneer',
   },
 ];
 
 const SUPPLY_FEATURES = [
-  'All timber sourced from verified, certified mills in Europe and Scandinavia.',
+  'All timber sourced from verified, certified mills in Europe and USA.',
   'Kiln-dried to international moisture content standards (8–12% MC).',
   'Grade A and B export quality available based on buyer specification.',
   'FSC-certified supply available on request for sustainability requirements.',
@@ -211,9 +209,9 @@ export default function TimberPageClient() {
                 style={{ color: 'rgba(255, 255, 255, 0.45)' }}
               >
                 AAV Sourcing connects buyers with softwood and hardwood timber,
-                logs, plywood, and veneer. Products can be sourced to your
-                required species, dimensions, grade, moisture content, and
-                packing specifications, subject to availability.
+                and plywood. Products can be sourced to your required species,
+                dimensions, grade, moisture content, and packing specifications,
+                subject to availability.
               </p>
             </div>
           </div>

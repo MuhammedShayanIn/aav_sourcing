@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import SectionWrapper from '@/components/SectionWrapper';
+import GoogleRecaptcha, { GoogleRecaptchaRef } from '@/components/GoogleRecaptcha';
 
 /* ─── Toggle Button Group ─── */
 function ToggleGroup({
@@ -81,8 +82,11 @@ export default function ContactPageClient() {
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const recaptchaRef = useRef<GoogleRecaptchaRef>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,6 +119,14 @@ export default function ContactPageClient() {
       return;
     }
 
+    if (!captchaToken) {
+      setStatus({
+        type: 'error',
+        message: 'Please check the Google reCAPTCHA box ("I\'m not a robot") before submitting.',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -128,6 +140,8 @@ export default function ContactPageClient() {
           company: company.trim(),
           email: email.trim(),
           message: message.trim(),
+          captchaToken,
+          website: honeypot,
         }),
       });
 
@@ -142,14 +156,18 @@ export default function ContactPageClient() {
         message: data.message || "Thank you! We'll get back to you within 24 hours.",
       });
 
-      // Clear input fields
+      // Clear input fields & reset captcha
       setFullName('');
       setCompany('');
       setEmail('');
       setMessage('');
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (err: unknown) {
       const errMsg = err instanceof Error ? err.message : 'An error occurred while sending your message. Please try again.';
       setStatus({ type: 'error', message: errMsg });
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } finally {
       setIsSubmitting(false);
     }
@@ -160,16 +178,16 @@ export default function ContactPageClient() {
       {/* ═══════ HERO ═══════ */}
       <section className="bg-navy">
         <div className="site-container py-16">
-          <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-2">
-            <div>
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+            <div className="w-full max-w-[720px]">
               <div className="flex items-center gap-3">
                 <span className="h-[1px] w-8 bg-blue-accent" />
                 <span className="text-[11px] font-semibold uppercase leading-[16.5px] tracking-[0.18em] text-blue-accent">
                   Get in Touch
                 </span>
               </div>
-              <h1 className="mt-6 text-[44px] font-black leading-[0.98] tracking-[-0.025em] text-white sm:text-[56px] sm:leading-[0.97] md:text-[64px] md:leading-[0.96] lg:text-[72px] lg:leading-[70px]">
-                Let&apos;s discuss
+              <h1 className="mt-6 text-[44px] font-black leading-[0.92] tracking-[-0.025em] text-white sm:text-[60px] sm:leading-[0.92] md:text-[76px] md:leading-[0.92] lg:text-[88px] lg:leading-[0.92] xl:text-[96px] xl:leading-[91.2px]">
+                Let’s discuss
                 <br />
                 your
                 <br />
@@ -178,9 +196,9 @@ export default function ContactPageClient() {
                 requirements
               </h1>
             </div>
-            <div className="lg:justify-self-end">
+            <div className="shrink-0 max-w-[360px] pb-1">
               <p
-                className="max-w-[384px] text-[15px] leading-[24.38px]"
+                className="text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(255, 255, 255, 0.45)' }}
               >
                 Send us the product specifications, quantity, and destination,
@@ -245,7 +263,8 @@ export default function ContactPageClient() {
                       >
                         WhatsApp
                       </span>
-                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-[#128C7E] link-hover-effect">
+                      <br />
+                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-[#25D366] link-hover-effect">
                         +92 325 3205555
                       </p>
                     </div>
@@ -286,10 +305,7 @@ export default function ContactPageClient() {
                     className="group flex gap-4 rounded-xl p-2 -mx-2 transition-all duration-300 hover:bg-white/60 hover:scale-[1.02]"
                   >
                     <div className="mt-0.5 flex shrink-0 items-start">
-                      <div
-                        className="flex h-9 w-9 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundColor: 'rgba(30, 95, 168, 0.12)' }}
-                      >
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110">
                         <Image
                           src="/images/icons/contact-email.svg"
                           alt=""
@@ -306,8 +322,41 @@ export default function ContactPageClient() {
                       >
                         Email
                       </span>
+                      <br />
                       <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-blue-primary link-hover-effect">
                         aav@aavsourcing.com
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://linkedin.com/in/aav"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex gap-4 rounded-xl p-2 -mx-2 transition-all duration-300 hover:bg-white/60 hover:scale-[1.02]"
+                  >
+                    <div className="mt-0.5 flex shrink-0 items-start">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110">
+                        <Image
+                          src="/images/icons/contact-linkedin.svg"
+                          alt=""
+                          width={15}
+                          height={15}
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <span
+                        className="text-[10px] font-semibold uppercase leading-[15px] tracking-[0.15em]"
+                        style={{ color: 'rgba(15, 30, 51, 0.35)' }}
+                      >
+                        LinkedIn
+                      </span>
+                      <br />
+                      <p className="mt-0.5 text-[14px] font-medium leading-[21px] text-blue-primary link-hover-effect">
+                        linkedin.com/in/aav
                       </p>
                     </div>
                   </a>
@@ -482,6 +531,39 @@ export default function ContactPageClient() {
                       borderColor: 'rgba(15, 30, 51, 0.2)',
                       color: '#0F1E33',
                     }}
+                  />
+                </div>
+
+                {/* Hidden Honeypot to trap automated spam bots */}
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="hidden"
+                  aria-hidden="true"
+                />
+
+                {/* Google reCAPTCHA v2 Checkbox */}
+                <div className="mt-8">
+                  <label
+                    className="mb-2 block text-[11px] font-semibold uppercase leading-[16.5px] tracking-[0.15em]"
+                    style={{ color: 'rgba(15, 30, 51, 0.4)' }}
+                  >
+                    Verification *
+                  </label>
+                  <GoogleRecaptcha
+                    ref={recaptchaRef}
+                    onVerify={(token) => {
+                      setCaptchaToken(token);
+                      if (status?.type === 'error' && status.message.includes('reCAPTCHA')) {
+                        setStatus(null);
+                      }
+                    }}
+                    onExpire={() => setCaptchaToken(null)}
+                    onError={() => setCaptchaToken(null)}
                   />
                 </div>
 

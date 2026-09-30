@@ -148,24 +148,19 @@ function ProcessStep({
    ═══════════════════════════════════════════════════ */
 export default function HomePage() {
   const TEXTILE_ITEMS = [
-    'Bath Towels',
-    'Hand Towels',
-    'Beach Towels',
-    'Hotel Towels',
-    'Bed Linen',
-    'Fitted Sheets',
-    'Baby Muslin',
-    'Burp Cloths',
+    'Towels',
+    'Garments',
+    'Bedding',
+    'Baby Textiles',
+    'Bed Sheets',
+    'Yarns',
+    'Fabrics',
+    'Institutional Textiles',
   ];
   const TIMBER_ITEMS = [
-    'Spruce',
-    'Pine',
-    'Oak',
-    'Ash',
-    'Beech',
-    'Kiln Dried',
-    'Grade A/B',
-    'FSC Available',
+    'Softwood Sawn Timber',
+    'Hardwood Sawn Timber',
+    'Plywood',
   ];
 
   return (
@@ -222,9 +217,9 @@ export default function HomePage() {
               className="mt-8 max-w-[400px] text-[17px] leading-[27.63px]"
               style={{ color: 'rgba(255, 255, 255, 0.6)' }}
             >
-              Connecting global buyers, importers &amp; wholesalers with
-              Pakistan&apos;s finest textile and timber manufacturers — directly,
-              reliably.
+              Connecting global brands and importers with Pakistan&apos;s finest
+              textile manufacturers, reliably — connect the Chinese timber
+              industry to the world.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -478,7 +473,7 @@ export default function HomePage() {
               <FeatureRow
                 number="01"
                 title="Factory-Direct Pricing"
-                description="Direct manufacturer relationships — no middlemen, better margins for buyers."
+                description="Direct manufacturer relationships."
               />
               <FeatureRow
                 number="02"

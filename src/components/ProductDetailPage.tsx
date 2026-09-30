@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import SectionWrapper from '@/components/SectionWrapper';
-import CTASection from '@/components/CTASection';
 
 /* ─── Types ─── */
 export interface ProductItem {
@@ -56,8 +55,8 @@ function ProductGridCard({ title, image, imageAlt, description }: ProductItem) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-[15px] font-bold leading-[22px] text-navy">
+      <div className={`flex flex-1 flex-col ${description ? 'p-6' : 'px-5 py-4'}`}>
+        <h3 className="text-[14.5px] font-bold leading-[21px] text-navy">
           {title}
         </h3>
         {description && (
@@ -80,25 +79,17 @@ function RelatedCard({ title, image, imageAlt, href }: RelatedProduct) {
       href={href}
       className="group flex w-full flex-col overflow-hidden rounded-2xl bg-beige transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
     >
-      <div className="relative h-36 w-full overflow-hidden bg-warm-gray">
+      <div className="relative h-32 w-full overflow-hidden bg-warm-gray">
         <Image
           src={image}
           alt={imageAlt}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 100vw, 311px"
         />
       </div>
-      <div className="flex items-center justify-between px-4 py-3">
-        <span className="text-[13px] font-semibold text-navy">{title}</span>
-        <Image
-          src="/images/icons/arrow-right.svg"
-          alt=""
-          width={11}
-          height={11}
-          className="arrow-slide opacity-0 transition-opacity group-hover:opacity-100"
-          aria-hidden="true"
-        />
+      <div className="px-4 py-3 bg-beige">
+        <span className="text-[13px] font-bold text-navy">{title}</span>
       </div>
     </Link>
   );
@@ -320,9 +311,18 @@ export default function ProductDetailPage({
               </div>
             </SectionWrapper>
 
-            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div
+              className={
+                category === 'Timber'
+                  ? 'mt-8 flex flex-wrap gap-3'
+                  : 'mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4'
+              }
+            >
               {relatedProducts.slice(0, 4).map((product) => (
-                <SectionWrapper key={product.title}>
+                <SectionWrapper
+                  key={product.title}
+                  className={category === 'Timber' ? 'w-full sm:w-[311px]' : ''}
+                >
                   <RelatedCard {...product} />
                 </SectionWrapper>
               ))}
@@ -330,14 +330,6 @@ export default function ProductDetailPage({
           </div>
         </section>
       )}
-
-      {/* ═══════ CTA ═══════ */}
-      <CTASection
-        heading={`Interested in\n${title.toLowerCase()}?`}
-        description={`Send your specifications or request samples — no commitment required. We'll provide a tailored quotation.`}
-        primaryButtonText="Enquire Now"
-        primaryButtonHref="/contact"
-      />
     </>
   );
 }

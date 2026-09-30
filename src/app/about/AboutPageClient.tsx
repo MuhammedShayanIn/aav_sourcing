@@ -68,7 +68,7 @@ function ProcessStep({
 }
 
 const VALUES = [
-  'Direct factory access across Pakistan\'s textile and timber supply base.',
+  'Textile is from Pakistan and timber from Europe / Russia / USA',
   'Single point of contact for sourcing, quality checks, and export.',
   'OEM, private label, and custom development supported.',
   'In-factory inspection before every shipment leaves.',
@@ -126,7 +126,7 @@ export default function AboutPageClient() {
                 Est. 20+ Years
               </span>
               <h2 className="mt-5 text-[48px] font-black leading-[60px] tracking-[-0.025em] text-navy">
-                A Single Sourcing Point in Pakistan
+                A Single Sourcing Point for Global Buyers.
               </h2>
             </SectionWrapper>
 
@@ -135,20 +135,13 @@ export default function AboutPageClient() {
                 className="text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(15, 30, 51, 0.65)' }}
               >
-                AAV Sourcing was founded with a clear purpose: to make Pakistan&apos;s
-                world-class textile and timber production accessible to global
-                buyers without friction. Based in Karachi — Pakistan&apos;s commercial
-                capital — we bridge the gap between international demand and local
-                manufacturing excellence.
+                AAV Sourcing is a Karachi-based sourcing and supply company connecting global buyers with reliable manufacturers, mills, and suppliers across Pakistan and key international markets. With over 20 years of experience, we source and supply home textiles, towels, bedding, baby textiles, fabrics, garments, yarns, and institutional textile products — serving customers across the USA, UK, Canada, Europe, the Middle East, and Asia.
               </p>
               <p
                 className="mt-5 text-[15px] leading-[24.38px]"
                 style={{ color: 'rgba(15, 30, 51, 0.65)' }}
               >
-                Over 20 years, we have built direct relationships with hundreds of
-                factories, suppliers, and mills across Pakistan — offering buyers a
-                single trusted contact for sourcing, quality assurance, and shipment
-                coordination.
+                From product development and supplier selection to pricing, quality control, compliance, and shipment coordination, we give buyers a single trusted point of contact throughout the sourcing process.
               </p>
               {/* Founder Card */}
               <div className="mt-8 flex items-center gap-4 rounded-xl bg-beige p-4 pr-6">

@@ -20,7 +20,52 @@ function singleLine(value: string): string {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { role, interest, fullName, company, email, message } = body;
+    const { role, interest, fullName, company, email, message, captchaToken, website } = body;
+
+    // 1. Silent Honeypot Trap for automated spam bots
+    if (website && typeof website === 'string' && website.trim() !== '') {
+      console.warn('[Bot Blocked]: Honeypot field filled by spam bot.');
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    // 2. Google reCAPTCHA Verification
+    const recaptchaSecret =
+      process.env.RECAPTCHA_SECRET_KEY || '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+
+    if (recaptchaSecret) {
+      if (!captchaToken || typeof captchaToken !== 'string' || !captchaToken.trim()) {
+        return NextResponse.json(
+          { error: 'Please complete the Google reCAPTCHA verification.' },
+          { status: 400 }
+        );
+      }
+
+      try {
+        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            secret: recaptchaSecret,
+            response: captchaToken,
+          }),
+        });
+
+        const verifyData = await verifyRes.json();
+        if (!verifyData.success) {
+          console.warn('[reCAPTCHA Verification Failed]:', verifyData['error-codes']);
+          return NextResponse.json(
+            { error: 'Google reCAPTCHA verification failed. Please check the box again.' },
+            { status: 400 }
+          );
+        }
+      } catch (err) {
+        console.error('[reCAPTCHA Request Error]:', err);
+        return NextResponse.json(
+          { error: 'Failed to verify reCAPTCHA with Google servers. Please try again.' },
+          { status: 500 }
+        );
+      }
+    }
 
     // Validation
     if (!role || typeof role !== 'string' || !role.trim()) {
@@ -149,7 +194,7 @@ Requirement:
 ${cleanMessage}
     `.trim();
 
-    const resendApiKey = process.env.RESEND_API_KEY;
+    const resendApiKey = process.env.RESEND_API_KEY?.trim();
     const smtpHost = process.env.SMTP_HOST;
     const smtpPort = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587;
     const smtpUser = process.env.SMTP_USER;
