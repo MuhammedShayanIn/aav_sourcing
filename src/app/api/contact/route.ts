@@ -118,7 +118,7 @@ export async function POST(request: Request) {
     const cleanMessage = message.trim();
     const cleanCompany =
       typeof company === 'string' && company.trim() ? company.trim() : 'Not specified';
-    const targetEmail = 'saquibinnovative.net@gmail.com';
+    const targetEmail = process.env.CONTACT_RECEIVER_EMAIL?.trim() || 'ahadirfan@gmail.com';
 
     // Safe versions for HTML
     const safeRole = escapeHtml(cleanRole);
@@ -129,7 +129,7 @@ export async function POST(request: Request) {
     const safeMessage = escapeHtml(cleanMessage);
 
     const subject = singleLine(
-      `New Sourcing Enquiry: ${cleanName} [${cleanInterest} - ${cleanRole}]`
+      `Sourcing Enquiry: ${cleanName} [${cleanInterest} - ${cleanRole}]`
     );
 
     // HTML Email Template
@@ -137,7 +137,7 @@ export async function POST(request: Request) {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #0F1E33; padding: 24px; text-align: center;">
           <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: bold; letter-spacing: 0.5px;">AAV SOURCING</h1>
-          <p style="color: #4FA3E3; margin: 6px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">New Website Sourcing Enquiry</p>
+          <p style="color: #4FA3E3; margin: 6px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Sourcing Enquiry</p>
         </div>
 
         <div style="padding: 28px;">
@@ -181,7 +181,7 @@ export async function POST(request: Request) {
     `;
 
     const textContent = `
-NEW SOURCING ENQUIRY — AAV SOURCING
+SOURCING ENQUIRY — AAV SOURCING
 ===================================
 Role: ${cleanRole}
 Category: ${cleanInterest}
@@ -194,17 +194,26 @@ Requirement:
 ${cleanMessage}
     `.trim();
 
+    const emailProvider = process.env.EMAIL_PROVIDER?.trim().toLowerCase();
     const resendApiKey = process.env.RESEND_API_KEY?.trim();
-    const smtpHost = process.env.SMTP_HOST;
+    const smtpHost = process.env.SMTP_HOST?.trim();
     const smtpPort = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpUser = process.env.SMTP_USER?.trim();
+    const smtpPass = process.env.SMTP_PASS?.trim();
     const fromAddress =
       process.env.SMTP_FROM ||
       process.env.RESEND_FROM ||
       `"AAV Sourcing" <${smtpUser || 'enquiry@aavsourcing.com'}>`;
 
-    if (resendApiKey) {
+    const hasSmtp = Boolean(smtpHost && smtpUser && smtpPass);
+    const hasResend = Boolean(resendApiKey);
+
+    // If EMAIL_PROVIDER is set to 'smtp' or 'resend', prioritize it.
+    // Otherwise use SMTP if full credentials are set, or fall back to Resend.
+    const useSmtp = emailProvider === 'smtp' || (hasSmtp && emailProvider !== 'resend');
+    const useResend = !useSmtp && (emailProvider === 'resend' || hasResend);
+
+    if (useResend && resendApiKey) {
       // Send using Resend SDK
       const resend = new Resend(resendApiKey);
       const { data, error } = await resend.emails.send({
@@ -227,7 +236,7 @@ ${cleanMessage}
       console.log(
         `[Contact API] Email successfully delivered to ${targetEmail} via Resend. ID: ${data?.id}`
       );
-    } else if (smtpHost && smtpUser && smtpPass) {
+    } else if (useSmtp && smtpHost && smtpUser && smtpPass) {
       // Use configured SMTP Transporter via Nodemailer
       const transporter = nodemailer.createTransport({
         host: smtpHost,
@@ -257,12 +266,12 @@ ${cleanMessage}
       console.warn(`Enquiry From: ${cleanName} <${cleanEmail}>`);
       console.warn(`Role: ${cleanRole} | Category: ${cleanInterest} | Company: ${cleanCompany}`);
       console.warn(`Message: ${cleanMessage}`);
-      console.warn(`👉 To receive live emails at ${targetEmail}, add RESEND_API_KEY to .env.local`);
+      console.warn(`👉 To receive live emails at ${targetEmail}, add SMTP credentials or verified RESEND_API_KEY in .env.local`);
       console.warn('--------------------------------------------------');
 
       return NextResponse.json(
         {
-          error: `Email service is not yet configured. Please add your RESEND_API_KEY in .env.local to enable live delivery to ${targetEmail}.`,
+          error: `Email service is not yet configured. Please configure your email service in .env.local to enable live delivery to ${targetEmail}.`,
         },
         { status: 503 }
       );
