@@ -24,11 +24,10 @@ function ToggleGroup({
             key={opt}
             type="button"
             onClick={() => onChange(opt)}
-            className={`rounded-full border px-5 py-2.5 text-[13px] font-semibold transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
-              isSelected
-                ? 'border-navy bg-navy text-white shadow-sm'
-                : 'border-navy/20 bg-transparent text-navy/60 hover:border-navy hover:text-navy'
-            }`}
+            className={`rounded-full border px-5 py-2.5 text-[13px] font-semibold transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${isSelected
+              ? 'border-navy bg-navy text-white shadow-sm'
+              : 'border-navy/20 bg-transparent text-navy/60 hover:border-navy hover:text-navy'
+              }`}
           >
             {opt}
           </button>
@@ -331,7 +330,7 @@ export default function ContactPageClient() {
 
                   {/* LinkedIn */}
                   <a
-                    href="https://linkedin.com/in/aav"
+                    href="https://www.linkedin.com/in/aav-sourcing-1aav5555"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex gap-4 rounded-xl p-2 -mx-2 transition-all duration-300 hover:bg-white/60 hover:scale-[1.02]"
@@ -400,11 +399,10 @@ export default function ContactPageClient() {
                 {/* Status Alert Notification */}
                 {status && (
                   <div
-                    className={`mt-6 flex items-start gap-3 rounded-xl p-4 text-[13.5px] leading-[21px] ${
-                      status.type === 'success'
-                        ? 'border border-green-200 bg-green-50 text-green-900'
-                        : 'border border-red-200 bg-red-50 text-red-800'
-                    }`}
+                    className={`mt-6 flex items-start gap-3 rounded-xl p-4 text-[13.5px] leading-[21px] ${status.type === 'success'
+                      ? 'border border-green-200 bg-green-50 text-green-900'
+                      : 'border border-red-200 bg-red-50 text-red-800'
+                      }`}
                   >
                     <span className="mt-0.5 text-[16px]">
                       {status.type === 'success' ? '✅' : '⚠️'}
@@ -572,9 +570,8 @@ export default function ContactPageClient() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`btn-primary group px-9 py-4 text-[13px] ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                    }`}
+                    className={`btn-primary group px-9 py-4 text-[13px] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                      }`}
                   >
                     <span>{isSubmitting ? 'Sending Enquiry…' : 'Send Enquiry'}</span>
                     {isSubmitting ? (

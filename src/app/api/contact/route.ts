@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
     // 2. Google reCAPTCHA Verification
     const recaptchaSecret =
-      process.env.RECAPTCHA_SECRET_KEY || '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+      process.env.RECAPTCHA_SECRET_KEY || '6LdtQNstAAAAABxgarHIyMTZI-SmDh-Lg2ItMbGn';
 
     if (recaptchaSecret) {
       if (!captchaToken || typeof captchaToken !== 'string' || !captchaToken.trim()) {
