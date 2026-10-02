@@ -195,7 +195,8 @@ ${cleanMessage}
     `.trim();
 
     const emailProvider = process.env.EMAIL_PROVIDER?.trim().toLowerCase();
-    const resendApiKey = process.env.RESEND_API_KEY?.trim();
+    const resendApiKey =
+      process.env.RESEND_API_KEY?.trim() || 're_LeMswvhK_AtLoDbbAQjDe1hJdmsAPSzfS';
     const smtpHost = process.env.SMTP_HOST?.trim();
     const smtpPort = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587;
     const smtpUser = process.env.SMTP_USER?.trim();
@@ -208,10 +209,10 @@ ${cleanMessage}
     const hasSmtp = Boolean(smtpHost && smtpUser && smtpPass);
     const hasResend = Boolean(resendApiKey);
 
-    // If EMAIL_PROVIDER is set to 'smtp' or 'resend', prioritize it.
-    // Otherwise use SMTP if full credentials are set, or fall back to Resend.
-    const useSmtp = emailProvider === 'smtp' || (hasSmtp && emailProvider !== 'resend');
-    const useResend = !useSmtp && (emailProvider === 'resend' || hasResend);
+    // If EMAIL_PROVIDER is set to 'resend', or if Resend key exists and SMTP is incomplete, prioritize Resend.
+    // If SMTP is fully configured (including password) and specified, use SMTP.
+    const useSmtp = hasSmtp && (emailProvider === 'smtp' || (!hasResend && emailProvider !== 'resend'));
+    const useResend = !useSmtp && hasResend;
 
     if (useResend && resendApiKey) {
       // Send using Resend SDK
