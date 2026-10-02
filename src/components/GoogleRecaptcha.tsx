@@ -34,15 +34,15 @@ interface GoogleRecaptchaProps {
   className?: string;
 }
 
-// Default to Google's official public test key if none configured in env
-const DEFAULT_TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+// Production Google reCAPTCHA v2 Site Key for aavsourcing.com
+const PRODUCTION_SITE_KEY = '6LdtQNstAAAAAKSfsJCEMM4BL44o_rO5ypR39Jll';
 
 const GoogleRecaptcha = forwardRef<GoogleRecaptchaRef, GoogleRecaptchaProps>(
   ({ onVerify, onExpire, onError, siteKey, className = '' }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const widgetIdRef = useRef<number | null>(null);
 
-    const activeSiteKey = siteKey || process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || DEFAULT_TEST_SITE_KEY;
+    const activeSiteKey = siteKey || process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || PRODUCTION_SITE_KEY;
 
     useImperativeHandle(ref, () => ({
       reset: () => {

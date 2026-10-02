@@ -554,6 +554,7 @@ export default function ContactPageClient() {
                   </label>
                   <GoogleRecaptcha
                     ref={recaptchaRef}
+                    siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LdtQNstAAAAAKSfsJCEMM4BL44o_rO5ypR39Jll'}
                     onVerify={(token) => {
                       setCaptchaToken(token);
                       if (status?.type === 'error' && status.message.includes('reCAPTCHA')) {
